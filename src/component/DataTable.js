@@ -16,6 +16,7 @@ const DataTable = () => {
 
   const columns = [
     { field: "id", headerName: "ID", width: 130, disableColumnMenu: true },
+    { field: "idEx", headerName: "idEX", width: 300 },
     { field: "firstName", headerName: "First Name", width: 300 },
     { field: "lastName", headerName: "Last Name", width: 400 },
     {
@@ -75,11 +76,15 @@ const DataTable = () => {
 
 
   const deleteAPIData = () => {
-    axios.delete(
-      `https://620497f4c6d8b20017dc35a0.mockapi.io/TestData/` +
-        JSON.stringify(deletedRows),
-      {}
-    );
+
+    const dest= deletedRows.id;
+
+    console.log(dest)
+
+    // axios.delete(
+    //   `https://620497f4c6d8b20017dc35a0.mockapi.io/TestData/1`,
+    //   {}
+    // );
   };
 
   return (
@@ -98,9 +103,9 @@ const DataTable = () => {
           const rowIds = selectionModel.map((rowId) =>
             parseInt(String(rowId), 10)
           );
-          console.log(rowIds)
-          const rowsToDelete = rowsToShow.filter(rowIds);
-          console.log(rowsToDelete);
+          const rowsToDelete = rowsToShow.filter((row) => rowIds.includes(row.id));
+          console.log("Row for deletion is : ");
+          console.log(rowsToDelete)
           setDeletedRows(rowsToDelete);
         }}
       />
