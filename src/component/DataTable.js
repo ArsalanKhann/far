@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import { Button } from "@material-ui/core";
+import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const DataTable = () => {
-
   const history = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -15,10 +15,17 @@ const DataTable = () => {
   const [deletedRows, setDeletedRows] = useState([]);
 
   const columns = [
-    { field: "id", headerName: "ID", width: 130, disableColumnMenu: true },
-    { field: "idEx", headerName: "idEX", width: 300 },
-    { field: "firstName", headerName: "First Name", width: 300 },
-    { field: "lastName", headerName: "Last Name", width: 400 },
+    { field: "id", headerName: "Asset No.", width: 140 },
+    { field: "DESCRIPTION", headerName: "Description", width: 150 },
+    { field: "MAJOR_CATEGORY", headerName: "Major Category", width: 190 },
+    { field: "MINOR_CATEGORY", headerName: "Minor Category", width: 190 },
+    { field: "PURCHASE_DATE", headerName: "Purchase Date", width: 190 },
+    { field: "PURCHASE_VALUE_RS", headerName: "Value", width: 150 },
+    { field: "WDV", headerName: "WDV", width: 120 },
+    { field: "LOCATION_CODE", headerName: "Location Code", width: 170 },
+    { field: "BRANCH_NAME", headerName: "Branch Name", width: 150 },
+    { field: "BRANCH_CODE", headerName: "Branch Code", width: 150 },
+    { field: "QTY_AS_FAR", headerName: "Quantity As Far", width: 150 },
     {
       field: "action",
       headerName: "Extract",
@@ -45,13 +52,13 @@ const DataTable = () => {
           history("/dataform", { state: { thisRow } });
         };
 
-        return <Button onClick={onClick}>Click</Button>;
+        return <Button onClick={onClick}>Proceed</Button>;
       },
     },
   ];
 
   useEffect(() => {
-    fetch("https://620497f4c6d8b20017dc35a0.mockapi.io/TestData")
+    fetch("http://localhost:3000/posts")
       .then((data) => data.json())
       .then((data) => {
         setRowsToShow(data);
@@ -73,14 +80,8 @@ const DataTable = () => {
     console.log(tableData);
   };
 
-
-
   const deleteAPIData = () => {
-
-    const dest= deletedRows.id;
-
-    console.log(dest)
-
+    // console.log(dest)
     // axios.delete(
     //   `https://620497f4c6d8b20017dc35a0.mockapi.io/TestData/1`,
     //   {}
@@ -88,31 +89,38 @@ const DataTable = () => {
   };
 
   return (
-    <div style={{ height: 500, width: "100%" }}>
-      <input
+    <div style={{ height: 600, width: "100%" }}>
+      <TextField
+        id="outlined-basic"
+        label="Search"
+        variant="standard"
+        style={{ marginBottom:15, marginTop:5 }}
         onChange={toggleChange}
         value={search}
-        style={{ margin: 10 }}
-      ></input>
+      />
       <DataGrid
+        getRowId={(row) => row.id}
         rows={rowsToShow}
         columns={columns}
-        pageSize={12}
+        pageSize={15}
         checkboxSelection
         onSelectionModelChange={({ selectionModel }) => {
           const rowIds = selectionModel.map((rowId) =>
             parseInt(String(rowId), 10)
           );
-          const rowsToDelete = rowsToShow.filter((row) => rowIds.includes(row.id));
+          const rowsToDelete = rowsToShow.filter((row) =>
+            rowIds.includes(row.id)
+          );
           console.log("Row for deletion is : ");
-          console.log(rowsToDelete)
+          console.log(rowsToDelete);
           setDeletedRows(rowsToDelete);
         }}
       />
-      <Button onClick={deleteAPIData}>Delete</Button>
+      <Button style={{ margin: 10 }} onClick={deleteAPIData}>
+        Add
+      </Button>
     </div>
   );
 };
 
 export default DataTable;
-
