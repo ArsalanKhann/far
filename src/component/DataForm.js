@@ -1,41 +1,73 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import { useLocation } from "react-router-dom";
-import {
-  Radio,
-  RadioGroup,
-  FormControl,
-  FormLabel,
-  Button,
-} from "@mui/material";
+import { Button } from "@mui/material";
 
 export default function DataForm() {
+  const element = document.querySelector(
+    "#put-request-error-handling .date-updated"
+  );
 
-  let radioValue;
+  const location = useLocation();             //To recive data from DataTable's Grid Element.
 
-  const location = useLocation();
-  console.log(location.state.thisRow.id);
+  const initialValues = {
+    ASSET_NUMBER: location.state.thisRow.id,
+    SERIAL_NUMBER: location.state.thisRow.SERIAL_NUMBER,
+    DESCRIPTION: location.state.thisRow.DESCRIPTION,
+    MAJOR_CATEGORY: location.state.thisRow.MAJOR_CATEGORY,
+    MINOR_CATEGORY: location.state.thisRow.MINOR_CATEGORY,
+    PURCHASE_DATE: location.state.thisRow.PURCHASE_DATE,
+    PURCHASE_VALUE_RS: location.state.thisRow.PURCHASE_VALUE_RS,
+    WDV: location.state.thisRow.WDV,
+    LOCATION_CODE: location.state.thisRow.LOCATION_CODE,
+    BRANCH_NAME: location.state.thisRow.BRANCH_NAME,
+    BRANCH_CODE: location.state.thisRow.BRANCH_CODE,
+    QTY_AS_FAR: location.state.thisRow.QTY_AS_FAR,
+    AVAILABILITY_STATUS: "",
+    REMARKS_IF_NO: "",
+    CUSTODIAN_EMP_ID: "",
+    CUSTODIAN_EMP_NO: "",
+    OTHER_REMARKS: "",
+  };
+
+  const [textfieldState, setTextfieldState] = useState(initialValues);
 
   const handleChange = (e) => {
 
-    radioValue = e.target.value;
-      alert("Value of RadioValue now is: "+radioValue);
-  }
+    console.log(textfieldState);  // Final Data after Change Handleing in Textfield
+
+    axios
+      .post("http://localhost:3000", textfieldState)
+      .then((response) => this.setState({ articleId: response.data.id }))
+      .catch((error) => {
+        this.setState({ errorMessage: error.message });
+        console.error("There was an error!", error);
+      });
+  };
+
+
+  const handleInputChange = (e) => {    // Handleing change in textfields which are editable
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+  };
 
   return (
     <React.Fragment>
-      <Typography sx={{ fontWeight: 'bold' }} variant="h6" gutterBottom>
-          Data Form
+      <Typography sx={{ fontWeight: "bold" }} variant="h6" gutterBottom>
+        Data Form
       </Typography>
+      {/* Grid is added to view data with each textfield and button at the end in seperate grid elements*/}
       <Grid container spacing={3} marginTop={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={location.state.thisRow.id}
+            value={initialValues.ASSET_NUMBER}
             id="ASSET_NUMBER"
             name="ASSET_NUMBER"
             label="Asset Number"
@@ -45,7 +77,7 @@ export default function DataForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            value={location.state.thisRow.BRANCH_CODE}
+            value={initialValues.BRANCH_CODE}
             required
             id="BRANCH_CODE"
             name="BRANCH_CODE"
@@ -58,7 +90,7 @@ export default function DataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={location.state.thisRow.BRANCH_NAME}
+            value={initialValues.BRANCH_NAME}
             id="BRANCH_NAME"
             name="BRANCH_NAME"
             label="Branch Name"
@@ -68,9 +100,9 @@ export default function DataForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            value={location.state.thisRow.PURCHASE_DATE}
+            value={initialValues.PURCHASE_DATE}
             required
-            id="PURCHASE_DATE"
+            id=""
             name="PURCHASE_DATE"
             label="Purchase Data"
             fullWidth
@@ -81,7 +113,7 @@ export default function DataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={location.state.thisRow.PURCHASE_VALUE_RS}
+            value={initialValues.PURCHASE_VALUE_RS}
             id="PURCHASE_VALUE_RS"
             name="PURCHASE_VALUE_RS"
             label="Purchase Value (RS)"
@@ -91,7 +123,7 @@ export default function DataForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            value={location.state.thisRow.DESCRIPTION}
+            value={initialValues.DESCRIPTION}
             id="DESCRIPTION"
             name="DESCRIPTION"
             label="Description"
@@ -102,7 +134,7 @@ export default function DataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={location.state.thisRow.MAJOR_CATEGORY}
+            value={initialValues.MAJOR_CATEGORY}
             id="MAJOR_CATEGORY"
             name="MAJOR_CATEGORY"
             label="Major Category"
@@ -112,7 +144,7 @@ export default function DataForm() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
-            value={location.state.thisRow.MINOR_CATEGORY}
+            value={initialValues.MINOR_CATEGORY}
             required
             id="MINOR_CATEGORY"
             name="MINOR_CATEGORY"
@@ -125,10 +157,32 @@ export default function DataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={location.state.thisRow.LOCATION_CODE}
+            value={initialValues.LOCATION_CODE}
             id="LOCATION_CODE"
             name="LOCATION_CODE"
             label="Location Code"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            value={initialValues.QTY_AS_FAR}
+            id="QTY_AS_FAR"
+            name="QTY_AS_FAR"
+            label="Quantity As Far"
+            fullWidth
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            value={initialValues.WDV}
+            id="WDV"
+            name="WDV"
+            label="WDV"
             fullWidth
             variant="standard"
           />
@@ -140,6 +194,7 @@ export default function DataForm() {
             label="Availability Status "
             fullWidth
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -150,6 +205,7 @@ export default function DataForm() {
             label="Remarks If No"
             fullWidth
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -161,6 +217,7 @@ export default function DataForm() {
             fullWidth
             autoComplete={"given-name"}
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -171,6 +228,7 @@ export default function DataForm() {
             label="Custodian Employee No."
             fullWidth
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -182,28 +240,11 @@ export default function DataForm() {
             fullWidth
             autoComplete={"given-name"}
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12}>
-          <label style={{margin:5}}>Yes</label>
-        <input
-          id="yes"
-          value="Yes"
-          name="platform"
-          type="radio"
-          onChange={handleChange}
-        />
-        <label style={{margin:5}}>No</label>
-        <input
-          id="no"
-          value="No"
-          name="platform"
-          type="radio"
-          onChange={handleChange}
-        />
-        </Grid>
-        <Grid item xs={12}>
-          <Button onClick={console.log("Submit")}>Submit</Button>
+          <Button onClick={handleChange}>Submit</Button>
         </Grid>
       </Grid>
     </React.Fragment>

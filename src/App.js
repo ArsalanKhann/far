@@ -7,7 +7,6 @@ function App() {
   return (
    
    <div className="App">
-
         <Routes>
           <Route path='/dataform' element={<DataForm/>} />
           <Route path='/datatable' element={<DataTable/>} />

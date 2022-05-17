@@ -16,6 +16,7 @@ const DataTable = () => {
 
   const columns = [
     { field: "id", headerName: "Asset No.", width: 140 },
+    { field: "SERIAL_NUMBER", headerName: "Serial Number", width: 150 },
     { field: "DESCRIPTION", headerName: "Description", width: 150 },
     { field: "MAJOR_CATEGORY", headerName: "Major Category", width: 190 },
     { field: "MINOR_CATEGORY", headerName: "Minor Category", width: 190 },
