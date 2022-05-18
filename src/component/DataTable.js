@@ -59,7 +59,7 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts")
+    fetch("http://localhost:3000/grid_data")
       .then((data) => data.json())
       .then((data) => {
         setRowsToShow(data);
