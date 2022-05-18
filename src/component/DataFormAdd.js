@@ -19,14 +19,14 @@ const containsText = (text, searchText) =>
   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
 
 let majorCategoryList = [
-  "Building",
-  "Communication Equipment",
-  "Computer",
-  "Computer Software",
-  "Fixture & Fixture New",
-  "Land",
-  "Office Machines and Equipment",
-  "Vehicle"
+  // "Building",
+  // "Communication Equipment",
+  // "Computer",
+  // "Computer Software",
+  // "Fixture & Fixture New",
+  // "Land",
+  // "Office Machines and Equipment",
+  // "Vehicle"
 ];
 
 export default function DataFormAdd() {
@@ -61,23 +61,37 @@ export default function DataFormAdd() {
     setSelectMajorCategoryList(e.target.value);
   
     console.log(selectMajorCategoryList);
-    console.log(allRows);
-
-
-
+  //  console.log(allRows);
     setdisabledMinorCategory(false);
+
   };
 
 
   //===============================================================
-  const [allRows, setAllRows] = useState();
+  
+  const [allMajorCategories, setAllMajorCategories] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/major_category")
-      .then((data) => data.json())
-      .then((data) => {
-        setAllRows(data);
+  const callConfirmService = async (confirmData) => {
+    return new Promise(async (resolve, reject) => {
+      let patchUrl =
+        'http://localhost:3000/major_category';
+      let serviceRespnse = await axios.request({
+        method: 'GET',
+        url: patchUrl,
+        headers: '',
+        data: confirmData,
       });
+      resolve(serviceRespnse);  
+    });
+  }
+
+  useEffect(async () => {
+    let serviceData = await callConfirmService();
+    console.log(serviceData.data)
+    setAllMajorCategories(serviceData.data.map(user => user.majorcategory))
+    console.log(allMajorCategories)
+    allMajorCategories = serviceData.data.map(user => user.majorcategory)
+    majorCategoryList = serviceData.data.map(user => user.majorcategory)
   }, []);
 
   //===============================================================
