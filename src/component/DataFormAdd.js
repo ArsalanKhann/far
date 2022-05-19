@@ -1,4 +1,4 @@
-import React, { useState, useMemo , useEffect} from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -15,21 +15,8 @@ import {
   InputAdornment,
 } from "@mui/material";
 
-const containsText = (text, searchText) =>
-  text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
-
-let majorCategoryList = [
-  // "Building",
-  // "Communication Equipment",
-  // "Computer",
-  // "Computer Software",
-  // "Fixture & Fixture New",
-  // "Land",
-  // "Office Machines and Equipment",
-  // "Vehicle"
-];
-
 export default function DataFormAdd() {
+  //==============variablle declaration=====================
   const initialValues = {
     ASSET_NUMBER: "",
     SERIAL_NUMBER: "",
@@ -50,26 +37,37 @@ export default function DataFormAdd() {
     OTHER_REMARKS: "",
   };
 
+  let handleMajorCategoryChange, handleChange, handleInputChange;
 
+  let majorCategoryList = [
+    "Building",
+    "Communication Equipment",
+    "Computer",
+    "Computer Software",
+    "Fixture & Fixture New",
+    "Land",
+    "Office Machines and Equipment",
+    "Vehicle",
+  ];
+
+  let withidmajorCategoryList = [
+    { id: 1, value: "Building" },
+    { id: 2, value: "Communication Equipment" },
+    { id: 3, value: "Computer" },
+    { id: 4, value: "laptop" },
+    { id: 5, value: "hassan" },
+  ];
+
+  //========================================================
 
   //==============Enabling Major Category and Setting Minor Category Data=====================
 
   const [disabledMinorCategory, setdisabledMinorCategory] = useState(true);
-
-  const MajorCategoryChange = (e) => {
-  
-    setSelectMajorCategoryList(e.target.value);
-  
-    console.log(selectMajorCategoryList);
-  //  console.log(allRows);
-    setdisabledMinorCategory(false);
-
-  };
-
-
-  //===============================================================
-  
-  const [allMajorCategories, setAllMajorCategories] = useState([]);
+  let [selectMajorCategoryList, setSelectMajorCategoryList] = useState({});
+  const [selectMinorCategoryList, setSelectMinorCategoryList] = useState();
+  const [textfieldState, setTextfieldState] = useState(initialValues);
+  const [searchText, setSearchText] = useState("");
+  const [allRows, setAllRows] = useState();
 
   const callConfirmService = async (confirmData) => {
     return new Promise(async (resolve, reject) => {
@@ -94,36 +92,52 @@ export default function DataFormAdd() {
     majorCategoryList = serviceData.data.map(user => user.majorcategory)
   }, []);
 
-  //===============================================================
-
   //Dropdown Search Major and Minor Categories
 
-  const [selectMajorCategoryList, setSelectMajorCategoryList] = useState();
-  const [selectMinorCategoryList, setSelectMinorCategoryList] = useState();
-
-  const [searchText, setSearchText] = useState("");
-  const displayedOptions = useMemo(
-    () =>
-      majorCategoryList.filter((option) => containsText(option, searchText)),
-    [searchText]
-  );
+  let saqib = withidmajorCategoryList.map((option) => option.value);
+  // console.log(saqib);
+  const displayedOptions = withidmajorCategoryList;
+  // useMemo(
+  //   () => saqib.filter((option) => containsText(option, searchText)),
+  //   [searchText]
+  // );
 
   //======================================================================
+  //===============================================================
+  //#region handleling methods
 
-  const [textfieldState, setTextfieldState] = useState(initialValues);
+  const containsText = (text, searchText) =>
+    // {
+    // console.log("searchText: " + searchText);
+    // console.log("text: " + text);
+    text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+  // };
 
-  const handleChange = (e) => {
+  handleMajorCategoryChange = (e) => {
+    console.log("e.target");
+    console.log(e.target.value);
+    // console.log(selectMajorCategoryList);
+    // setSelectMajorCategoryList(e.target.value);
+    setSelectMajorCategoryList(e.target.value);
+    // console.log(allRows);
+    setdisabledMinorCategory(false);
+  };
+
+  handleChange = (e) => {
     console.log(textfieldState); // Final Data after Change Handleing in Textfield
   };
 
-  const handleInputChange = (e) => {
+  handleInputChange = (e) => {
     // Handleing change in textfields which are editable
     const { name, value } = e.target;
+
     setTextfieldState({
       ...textfieldState,
       [name]: value,
     });
   };
+
+  //#endregion
 
   return (
     <React.Fragment>
@@ -208,32 +222,13 @@ export default function DataFormAdd() {
                 labelId="search-select-label"
                 id="MAJOR_CATEGORY"
                 label="Options"
-                onChange={MajorCategoryChange}
+                onChange={(e) => handleMajorCategoryChange(e)}
                 onClose={() => setSearchText("")}
-                renderValue={() => selectMajorCategoryList}
+                renderValue={() => selectMajorCategoryList.value}
               >
-                <ListSubheader>
-                  <TextField
-                    size="small"
-                    autoFocus
-                    placeholder="Type to search..."
-                    fullWidth
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start"></InputAdornment>
-                      ),
-                    }}
-                    onChange={(e) => setSearchText(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key !== "Escape") {
-                        e.stopPropagation();
-                      }
-                    }}
-                  />
-                </ListSubheader>
                 {displayedOptions.map((option, i) => (
                   <MenuItem key={i} value={option}>
-                    {option}
+                    {option.value}
                   </MenuItem>
                 ))}
               </Select>
@@ -367,11 +362,11 @@ export default function DataFormAdd() {
             fullWidth
             autoComplete={"given-name"}
             variant="standard"
-            onChange={handleInputChange}
+            onChange={(e) => this.handleInputChange(e)}
           />
         </Grid>
         <Grid item xs={12}>
-          <Button onClick={handleChange}>Submit</Button>
+          <Button onClick={(e) => handleChange(e)}>Submit</Button>
         </Grid>
       </Grid>
     </React.Fragment>
