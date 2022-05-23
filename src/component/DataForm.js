@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useLocation } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Radio, RadioGroup } from "@mui/material";
 
 export default function DataForm() {
   const element = document.querySelector(
@@ -31,6 +31,7 @@ export default function DataForm() {
     CUSTODIAN_EMP_ID: "",
     CUSTODIAN_EMP_NO: "",
     OTHER_REMARKS: "",
+    YES_NO:null
   };
 
   const [textfieldState, setTextfieldState] = useState(initialValues);
@@ -50,6 +51,14 @@ export default function DataForm() {
 
 
   const handleInputChange = (e) => {    // Handleing change in textfields which are editable
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+  };
+
+  const handleChangeCheck = (e) => {
     const { name, value } = e.target;
     setTextfieldState({
       ...textfieldState,
@@ -242,6 +251,25 @@ export default function DataForm() {
             variant="standard"
             onChange={handleInputChange}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+        Yes
+        <input
+          id="yes"
+          value="yes"
+          name="yes"
+          type="radio"
+          onChange={handleChangeCheck}
+        />
+        <br />
+        No
+        <input
+          id="no"
+          value="no"
+          name="no"
+          type="radio"
+          onChange={handleChangeCheck}
+        />
         </Grid>
         <Grid item xs={12}>
           <Button onClick={handleChange}>Submit</Button>

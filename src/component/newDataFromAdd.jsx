@@ -21,7 +21,10 @@ class NewDataFormAdd extends Component {
     allRows: "",
     allMajorCategories: [],
     allMinorCategories: [],
+    errorText: '',
   };
+
+  phoneRegex="";
 
   displayedOptionsMajor;
   displayedOptionsMinor;
@@ -126,6 +129,14 @@ class NewDataFormAdd extends Component {
         [name]: value,
       },
     });
+
+    if (e.target.value.match(this.phoneRegex)) {
+      this.setState({ errorText: '' })
+    } else {
+      this.setState({ errorText: 'Invalid format: ###-###-####' })
+    }
+
+
   };
 
 
@@ -144,12 +155,14 @@ class NewDataFormAdd extends Component {
         <Grid container spacing={3} marginTop={3}>
           <Grid item xs={12} sm={6}>
             <TextField
+
               required
+              errorText= {this.state.errorText}
               id="ASSET_NUMBER"
               name="ASSET_NUMBER"
               label="Asset Number"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -161,7 +174,7 @@ class NewDataFormAdd extends Component {
               label="Branch Code"
               fullWidth
               autoComplete={"given-name"}
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -172,7 +185,7 @@ class NewDataFormAdd extends Component {
               name="BRANCH_NAME"
               label="Branch Name"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -184,7 +197,7 @@ class NewDataFormAdd extends Component {
               label="Purchase Data"
               fullWidth
               autoComplete={"given-name"}
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -195,7 +208,7 @@ class NewDataFormAdd extends Component {
               name="PURCHASE_VALUE_RS"
               label="Purchase Value (RS)"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -205,14 +218,14 @@ class NewDataFormAdd extends Component {
               name="DESCRIPTION"
               label="Description"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Box>
               <FormControl fullWidth>
-                <InputLabel id="search-select-label">Major Category</InputLabel>
+                <InputLabel id="search-select-label" >Major Category</InputLabel>
                 <Select
                   label="Options"
                   onChange={this.handleMajorCategoryChange}
@@ -253,7 +266,7 @@ class NewDataFormAdd extends Component {
               name="LOCATION_CODE"
               label="Location Code"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -264,7 +277,7 @@ class NewDataFormAdd extends Component {
               name="QTY_AS_FAR"
               label="Quantity As Far"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -275,7 +288,7 @@ class NewDataFormAdd extends Component {
               name="WDV"
               label="WDV"
               fullWidth
-              variant="standard"
+              vvariant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -285,7 +298,7 @@ class NewDataFormAdd extends Component {
               name="AVAILABILITY_STATUS"
               label="Availability Status"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -296,7 +309,7 @@ class NewDataFormAdd extends Component {
               name="REMARKS_IF_NO"
               label="Remarks If No"
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -308,7 +321,7 @@ class NewDataFormAdd extends Component {
               label="Custodian Employee ID"
               fullWidth
               autoComplete={"given-name"}
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -319,7 +332,7 @@ class NewDataFormAdd extends Component {
               name="CUSTODIAN_EMP_NO"
               label="Custodian Employee No."
               fullWidth
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -331,12 +344,12 @@ class NewDataFormAdd extends Component {
               label="Other Remarks"
               fullWidth
               autoComplete={"given-name"}
-              variant="standard"
+              variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
           <Grid item xs={12}>
-            <Button onClick={(e) => this.handleChange(e)}>Submit</Button>
+            <Button variant="outlined" color="primary" onClick={(e) => this.handleChange(e)}>Submit</Button>
           </Grid>
         </Grid>
       </React.Fragment>

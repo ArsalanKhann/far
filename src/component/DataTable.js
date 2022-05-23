@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
-import { Button } from "@material-ui/core";
-import { TextField } from "@mui/material";
+import {
+  Button,
+  Box,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
+  TextField,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,10 +16,29 @@ const DataTable = () => {
   const history = useNavigate();
 
   const [search, setSearch] = useState("");
+  let [searchField, setSearchField] = useState("BRANCH_CODE");
   const [tableData, setTableData] = useState([]);
   const [allRows, setAllRows] = useState(tableData);
   const [rowsToShow, setRowsToShow] = useState(tableData);
   const [deletedRows, setDeletedRows] = useState([]);
+
+  // const [values, setValues] = useState(["Bam", "Kate", "Nicole", "Aaron"]);
+  const [values, setValues] = useState([
+    { value: "id", label: "Asset No.", id:0 },
+    { value: "SERIAL_NUMBER", label: "Serial Number", id:1 },
+    { value: "DESCRIPTION", label: "Description", id:2 },
+    { value: "MAJOR_CATEGORY", label: "Major Category", id:3 },
+    { value: "MINOR_CATEGORY", label: "Minor Category", id:4 },
+    { value: "PURCHASE_DATE", label: "Purchase Date", id:5 },
+    { value: "PURCHASE_VALUE_RS", label: "Value", id:6 },
+    { value: "WDV", label: "WDV", id:7 },
+    { value: "LOCATION_CODE", label: "Location Code", id:8 },
+    { value: "BRANCH_NAME", label: "Branch Name", id:9 },
+    { value: "BRANCH_CODE", label: "Branch Code", id:10 },
+    { value: "QTY_AS_FAR", label: "Quantity As Far", id:11 }
+  ]);
+
+  let [selectedId, setSelectedId] = useState();
 
   const columns = [
     { field: "id", headerName: "Asset No.", width: 140 },
@@ -68,34 +94,54 @@ const DataTable = () => {
   }, []);
 
   const toggleChange = (e) => {
+    console.log(selectedId.value)
     setSearch(e.target.value);
-
     if (e.target.value.trim().length) {
       const searchResults = allRows.filter((row) => {
-        return row.id.toString() === e.target.value.trim();
+        return row[selectedId.value].includes(e.target.value.trim());
       });
       setRowsToShow(searchResults);
     } else {
       setRowsToShow(allRows);
     }
-    console.log(tableData);
+  };
+
+  const handleChange = (e) => {
+  //  setSelectedId(values[e.target.value.id].id)
+    console.log("Name " + e.target.value.label);
+    console.log("ID " + e.target.value.id);
+    setSelectedId( e.target.value);
   };
 
   const deleteAPIData = () => {
-    // console.log(dest)
-    // axios.delete(
-    //   `https://620497f4c6d8b20017dc35a0.mockapi.io/TestData/1`,
-    //   {}
-    // );
+    console.log("Row for deletion is : ");
+    console.log(deletedRows);
   };
 
   return (
     <div style={{ height: 600, width: "100%" }}>
+      <FormControl style={{ marginRight: 500 }}>
+        <InputLabel htmlFor="agent-simple">Agent</InputLabel>
+        <Select
+       
+          value={values.label}
+          onChange={handleChange}
+          style={{ width: 150 }}
+        >
+          {values.map((value, index) => {
+            return (
+              <MenuItem value={value} id={index}  style = {{ display: 'flex', flexDirection: 'column', padding:5 }}>
+                {value.label}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
       <TextField
         id="outlined-basic"
         label="Search"
         variant="standard"
-        style={{ marginBottom:15, marginTop:5 }}
+        style={{ marginBottom: 15, marginTop: 5 }}
         onChange={toggleChange}
         value={search}
       />
