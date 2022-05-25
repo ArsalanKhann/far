@@ -21,11 +21,25 @@ class NewDataFormAdd extends Component {
     allRows: "",
     allMajorCategories: [],
     allMinorCategories: [],
-    errorText: '',
+    assetNoError: false,
+    branchNameError: false,
+    purchaseValueError: false,
+    purchaseDateError: false,
+    descriptionError: false,
+    majorCategoryError: false,
+    minorCategoryError: false,
+    locationCodeError: false,
+    custodianEmployeeIDError: false,
+    custodianEmployeeNoError: false,
+    otherRemarksError: false,
+    branchCodeError: false,
+    qtyAsFarError: false,
+    wdvError: false,
+    availabiltyStatusError: false,
+    remarksIfNo: false,
   };
 
-  phoneRegex="";
-
+  phoneRegex = "";
   displayedOptionsMajor;
   displayedOptionsMinor;
 
@@ -99,7 +113,6 @@ class NewDataFormAdd extends Component {
   };
 
   handleMinorCategoryChange = (e) => {
-
     console.log("Minor Category Data");
     console.log(this.displayedOptionsMinor);
 
@@ -111,15 +124,133 @@ class NewDataFormAdd extends Component {
     });
   };
 
-  handleChange = (e) => {
-    console.log(this.state.allMajorCategories);
-    console.log(this.withidmajorCategoryList);
-    console.log(this.state.formDataState); // Final Data after Change Handleing in Textfield
+  onSubmitButton = (e) => {
+    
+
+    if (
+      this.state.branchNameError === true || this.state.branchNameError === null
+      // this.state.qtyAsFarError == true ||
+      // this.state.purchaseValueError == true ||
+      // this.state.descriptionError == true ||
+      // this.state.majorCategoryError == true ||
+      // this.state.minorCategoryError == true ||
+      // this.state.locationCodeError == true ||
+      // this.state.custodianEmployeeIDError == true ||
+      // this.state.custodianEmployeeNoError == true ||
+      // this.state.otherRemarksError == true ||
+      // this.state.remarksIfNo == true ||
+      // this.state.branchCodeError == true ||
+      // this.state.purchaseDateError == true ||
+      // this.state.availabiltyStatusError == true ||
+      // this.state.wdvError == true
+    ) {
+      alert("Please Fill Mandatory Field First");
+    }
+    else{
+      console.log(this.state.formDataState);
+    }
+
+     // Final Data after Change Handleing in Textfield
   };
 
   handleInputChange = (e) => {
-    const { name, value } = e.target;
+    if (this.state.formDataState.ASSET_NUMBER == "") {
+      this.setState({ assetNoError: true });
+    } else {
+      this.setState({ assetNoError: false });
+    }
 
+    if (this.state.formDataState.BRANCH_NAME == "") {
+      this.setState({ branchNameError: true });
+    } else {
+      this.setState({ branchNameError: false });
+    }
+
+    if (this.state.formDataState.PURCHASE_VALUE_RS == "") {
+      this.setState({ purchaseValueError: true });
+    } else {
+      this.setState({ purchaseValueError: false });
+    }
+
+    if (this.state.formDataState.DESCRIPTION == "") {
+      this.setState({ descriptionError: true });
+    } else {
+      this.setState({ descriptionError: false });
+    }
+
+    if (this.state.formDataState.MAJOR_CATEGORY == "") {
+      this.setState({ majorCategoryError: true });
+    } else {
+      this.setState({ majorCategoryError: false });
+    }
+
+    if (this.state.formDataState.MINOR_CATEGORY == "") {
+      this.setState({ minorCategoryError: true });
+    } else {
+      this.setState({ minorCategoryError: false });
+    }
+
+    if (this.state.formDataState.LOCATION_CODE == "") {
+      this.setState({ locationCodeError: true });
+    } else {
+      this.setState({ locationCodeError: false });
+    }
+
+    if (this.state.formDataState.CUSTODIAN_EMP_ID == "") {
+      this.setState({ custodianEmployeeIDError: true });
+    } else {
+      this.setState({ custodianEmployeeIDError: false });
+    }
+
+    if (this.state.formDataState.CUSTODIAN_EMP_NO == "") {
+      this.setState({ custodianEmployeeNoError: true });
+    } else {
+      this.setState({ custodianEmployeeNoError: false });
+    }
+
+    if (this.state.formDataState.OTHER_REMARKS == "") {
+      this.setState({ otherRemarksError: true });
+    } else {
+      this.setState({ otherRemarksError: false });
+    }
+    if (this.state.formDataState.REMARKS_IF_NO == "") {
+      this.setState({ remarksIfNo: true });
+    } else {
+      this.setState({ remarksIfNo: false });
+    }
+
+    if (this.state.formDataState.BRANCH_CODE == "") {
+      this.setState({ branchCodeError: true });
+    } else {
+      this.setState({ branchCodeError: false });
+    }
+    if (this.state.formDataState.PURCHASE_DATE == "") {
+      this.setState({ purchaseDateError: true });
+    } else {
+      this.setState({ purchaseDateError: false });
+    }
+    if (this.state.formDataState.AVAILABILITY_STATUS == "") {
+      this.setState({ availabiltyStatusError: true });
+    } else {
+      this.setState({ availabiltyStatusError: false });
+    }
+    if (this.state.formDataState.WDV == "") {
+      this.setState({ wdvError: true });
+    } else {
+      this.setState({ wdvError: false });
+    }
+    if (this.state.formDataState.QTY_AS_FAR == "") {
+      this.setState({ qtyAsFarError: true });
+    } else {
+      this.setState({ qtyAsFarError: false });
+    }
+    if (this.state.formDataState.MINOR_CATEGORY == "") {
+      this.setState({ minorCategoryError: true });
+    } else {
+      this.setState({ minorCategoryError: false });
+    }
+
+    const { name, value } = e.target;
     console.log(name);
     console.log(value);
 
@@ -129,40 +260,27 @@ class NewDataFormAdd extends Component {
         [name]: value,
       },
     });
-
-    if (e.target.value.match(this.phoneRegex)) {
-      this.setState({ errorText: '' })
-    } else {
-      this.setState({ errorText: 'Invalid format: ###-###-####' })
-    }
-
-
   };
-
-
 
   render() {
     this.displayedOptionsMajor = this.state.allMajorCategories;
     this.displayedOptionsMinor = this.state.allMinorCategories;
-
 
     return (
       <React.Fragment>
         <Typography sx={{ fontWeight: "bold" }} variant="h6" gutterBottom>
           Data Form
         </Typography>
-        {/* Grid is added to view data with each textfield and button at the end in seperate grid elements*/}
         <Grid container spacing={3} marginTop={3}>
           <Grid item xs={12} sm={6}>
             <TextField
-
               required
-              errorText= {this.state.errorText}
               id="ASSET_NUMBER"
               name="ASSET_NUMBER"
               label="Asset Number"
               fullWidth
               variant="outlined"
+              error={this.state.assetNoError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -175,6 +293,7 @@ class NewDataFormAdd extends Component {
               fullWidth
               autoComplete={"given-name"}
               variant="outlined"
+              error={this.state.branchCodeError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -186,15 +305,17 @@ class NewDataFormAdd extends Component {
               label="Branch Name"
               fullWidth
               variant="outlined"
+              error={this.state.branchNameError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id=""
+              id="PURCHASE_DATE"
+              error={this.state.purchaseDateError}
               name="PURCHASE_DATE"
-              label="Purchase Data"
+              label="Purchase Date"
               fullWidth
               autoComplete={"given-name"}
               variant="outlined"
@@ -209,6 +330,7 @@ class NewDataFormAdd extends Component {
               label="Purchase Value (RS)"
               fullWidth
               variant="outlined"
+              error={this.state.purchaseValueError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -220,16 +342,18 @@ class NewDataFormAdd extends Component {
               fullWidth
               variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
+              error={this.state.descriptionError}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Box>
               <FormControl fullWidth>
-                <InputLabel id="search-select-label" >Major Category</InputLabel>
+                <InputLabel id="search-select-label">Major Category</InputLabel>
                 <Select
                   label="Options"
                   onChange={this.handleMajorCategoryChange}
                   value={this.state.selectMajorCategoryList.id}
+                  error={this.state.majorCategoryError}
                 >
                   {this.displayedOptionsMajor.map((option, i) => (
                     <MenuItem key={i} value={option}>
@@ -243,12 +367,13 @@ class NewDataFormAdd extends Component {
           <Grid item xs={12} sm={6}>
             <Box>
               <FormControl fullWidth>
-                 <InputLabel id="search-select-label">Minor Category</InputLabel> 
+                <InputLabel id="search-select-label">Minor Category</InputLabel>
                 <Select
                   disabled={this.state.disabledMinorCategory}
                   label="Options"
                   onChange={this.handleMinorCategoryChange}
                   value={this.state.selectMinorCategoryList.id}
+                  error={this.state.minorCategoryError}
                 >
                   {this.displayedOptionsMinor.map((option, i) => (
                     <MenuItem key={i} value={option}>
@@ -267,6 +392,7 @@ class NewDataFormAdd extends Component {
               label="Location Code"
               fullWidth
               variant="outlined"
+              error={this.state.locationCodeError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -278,6 +404,7 @@ class NewDataFormAdd extends Component {
               label="Quantity As Far"
               fullWidth
               variant="outlined"
+              error={this.state.qtyAsFarError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -287,6 +414,7 @@ class NewDataFormAdd extends Component {
               id="WDV"
               name="WDV"
               label="WDV"
+              error={this.state.wdvError}
               fullWidth
               vvariant="outlined"
               onChange={(e) => this.handleInputChange(e)}
@@ -299,6 +427,7 @@ class NewDataFormAdd extends Component {
               label="Availability Status"
               fullWidth
               variant="outlined"
+              error={this.state.availabiltyStatusError}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -310,6 +439,7 @@ class NewDataFormAdd extends Component {
               label="Remarks If No"
               fullWidth
               variant="outlined"
+              error={this.state.remarksIfNo}
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
@@ -317,6 +447,7 @@ class NewDataFormAdd extends Component {
             <TextField
               required
               id="CUSTODIAN_EMP_ID"
+              error={this.state.custodianEmployeeIDError}
               name="CUSTODIAN_EMP_ID"
               label="Custodian Employee ID"
               fullWidth
@@ -328,6 +459,7 @@ class NewDataFormAdd extends Component {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error={this.state.custodianEmployeeNoError}
               id="CUSTODIAN_EMP_NO"
               name="CUSTODIAN_EMP_NO"
               label="Custodian Employee No."
@@ -343,13 +475,20 @@ class NewDataFormAdd extends Component {
               name="OTHER_REMARKS"
               label="Other Remarks"
               fullWidth
+              error={this.state.otherRemarksError}
               autoComplete={"given-name"}
               variant="outlined"
               onChange={(e) => this.handleInputChange(e)}
             />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="outlined" color="primary" onClick={(e) => this.handleChange(e)}>Submit</Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={(e) => this.onSubmitButton(e)}
+            >
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </React.Fragment>

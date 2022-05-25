@@ -12,6 +12,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
+
 const DataTable = () => {
   const history = useNavigate();
 
@@ -22,7 +24,7 @@ const DataTable = () => {
   const [rowsToShow, setRowsToShow] = useState(tableData);
   const [deletedRows, setDeletedRows] = useState([]);
 
-  // const [values, setValues] = useState(["Bam", "Kate", "Nicole", "Aaron"]);
+  
   const [values, setValues] = useState([
     { value: "id", label: "Asset No.", id:0 },
     { value: "SERIAL_NUMBER", label: "Serial Number", id:1 },
@@ -94,7 +96,6 @@ const DataTable = () => {
   }, []);
 
   const toggleChange = (e) => {
-    console.log(selectedId.value)
     setSearch(e.target.value);
     if (e.target.value.trim().length) {
       const searchResults = allRows.filter((row) => {
@@ -107,7 +108,6 @@ const DataTable = () => {
   };
 
   const handleChange = (e) => {
-  //  setSelectedId(values[e.target.value.id].id)
     console.log("Name " + e.target.value.label);
     console.log("ID " + e.target.value.id);
     setSelectedId( e.target.value);
@@ -123,7 +123,6 @@ const DataTable = () => {
       <FormControl style={{ marginRight: 500 }}>
         <InputLabel htmlFor="agent-simple">Agent</InputLabel>
         <Select
-       
           value={values.label}
           onChange={handleChange}
           style={{ width: 150 }}
