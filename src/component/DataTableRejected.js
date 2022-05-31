@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
-const DataTable = () => {
+const DataTableRejected = () => {
   const history = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -46,6 +46,7 @@ const DataTable = () => {
   const columns = [
     { field: "id", headerName: "Asset No.", width: 140 },
     { field: "SERIAL_NUMBER", headerName: "Serial Number", width: 150 },
+    { field: "REMARKS_IF_NO", headerName: "Remarks if No", width: 150 },
     { field: "DESCRIPTION", headerName: "Description", width: 150 },
     { field: "MAJOR_CATEGORY", headerName: "Major Category", width: 190 },
     { field: "MINOR_CATEGORY", headerName: "Minor Category", width: 190 },
@@ -79,10 +80,10 @@ const DataTable = () => {
 
           // alert(onclickData)
 
-          history("/dataform", { state: { thisRow } });
+          history("/dataformrejected", { state: { thisRow } });
         };
 
-        return <Button onClick={onClick}>Proceed</Button>;
+        return <Button onClick={onClick}>Rejected Data Form</Button>;
       },
     },
   ];
@@ -196,4 +197,4 @@ const DataTable = () => {
   );
 };
 
-export default DataTable;
+export default DataTableRejected;

@@ -17,34 +17,35 @@ const useStyles = makeStyles({
   },
 });
 
+
 const Drawer = (props) => {
   const history = useNavigate();
 
   const classes = useStyles();
   const itemsList = [
     {
+      text: "Add New Data",
+      icon: <MailIcon />,
+      onClick: () => history("/dataformadd"),
+    },
+    {
       text: "Datatable",
       icon: <InboxIcon />,
       onClick: () => history("/datatable"),
     },
     {
-      text: "New Data Form Add",
+      text: "Data Table Rejected",
       icon: <MailIcon />,
-      onClick: () => history("/dataformadd"),
-    },
-    {
-      text: "Data Form",
-      icon: <MailIcon />,
-      onClick: () => history("/dataform"),
+      onClick: () => history("/datatablerejected"),
     },
   ];
   return (
-    <MUIDrawer variant="persistent" className={classes.drawer} open={true}>
+    <MUIDrawer variant="persistent" className={classes.drawer} open={true} style={{margin:20}}>
       <List>
         {itemsList.map((item, index) => {
           const { text, icon, onClick } = item;
           return (
-            <ListItem button key={text} onClick={onClick}>
+            <ListItem button key={text} onClick={onClick} style={{paddingTop:15 , paddingRight:15}}>
               {icon && <ListItemIcon>{icon}</ListItemIcon>}
               <ListItemText primary={text} />
             </ListItem>

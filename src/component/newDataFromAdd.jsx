@@ -125,10 +125,9 @@ class NewDataFormAdd extends Component {
   };
 
   onSubmitButton = (e) => {
-    
-
     if (
-      this.state.branchNameError === true || this.state.branchNameError === null
+      this.state.branchNameError === true ||
+      this.state.branchNameError === null
       // this.state.qtyAsFarError == true ||
       // this.state.purchaseValueError == true ||
       // this.state.descriptionError == true ||
@@ -145,12 +144,11 @@ class NewDataFormAdd extends Component {
       // this.state.wdvError == true
     ) {
       alert("Please Fill Mandatory Field First");
-    }
-    else{
+    } else {
       console.log(this.state.formDataState);
     }
 
-     // Final Data after Change Handleing in Textfield
+    // Final Data after Change Handleing in Textfield
   };
 
   handleInputChange = (e) => {
@@ -218,7 +216,6 @@ class NewDataFormAdd extends Component {
     } else {
       this.setState({ remarksIfNo: false });
     }
-
     if (this.state.formDataState.BRANCH_CODE == "") {
       this.setState({ branchCodeError: true });
     } else {
@@ -268,9 +265,6 @@ class NewDataFormAdd extends Component {
 
     return (
       <React.Fragment>
-        <Typography sx={{ fontWeight: "bold" }} variant="h6" gutterBottom>
-          Data Form
-        </Typography>
         <Grid container spacing={3} marginTop={3}>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -350,7 +344,8 @@ class NewDataFormAdd extends Component {
               <FormControl fullWidth>
                 <InputLabel id="search-select-label">Major Category</InputLabel>
                 <Select
-                  label="Options"
+                  labelId="search-select-label"
+                  label="Major Category"
                   onChange={this.handleMajorCategoryChange}
                   value={this.state.selectMajorCategoryList.id}
                   error={this.state.majorCategoryError}
@@ -370,7 +365,8 @@ class NewDataFormAdd extends Component {
                 <InputLabel id="search-select-label">Minor Category</InputLabel>
                 <Select
                   disabled={this.state.disabledMinorCategory}
-                  label="Options"
+                  labelId="search-select-label"
+                  label="Maior Category"
                   onChange={this.handleMinorCategoryChange}
                   value={this.state.selectMinorCategoryList.id}
                   error={this.state.minorCategoryError}
@@ -483,7 +479,7 @@ class NewDataFormAdd extends Component {
           </Grid>
           <Grid item xs={12}>
             <Button
-              variant="outlined"
+              variant="contained"
               color="primary"
               onClick={(e) => this.onSubmitButton(e)}
             >

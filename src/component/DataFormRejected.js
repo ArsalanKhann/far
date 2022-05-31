@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import { useLocation } from "react-router-dom";
 import { Button, Radio, RadioGroup } from "@mui/material";
 
-export default function DataForm() {
+export default function DataFormRejected() {
   const element = document.querySelector(
     "#put-request-error-handling .date-updated"
   );
@@ -75,12 +75,13 @@ export default function DataForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            value={initialValues.ASSET_NUMBER}
+            defaultValue={initialValues.ASSET_NUMBER}
             id="ASSET_NUMBER"
             name="ASSET_NUMBER"
             label="Asset Number"
             fullWidth
             variant="standard"
+            onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
