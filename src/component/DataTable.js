@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../fra.css"
+import "../fra.css";
 import { DataGrid } from "@material-ui/data-grid";
 import {
   Button,
@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
 
 const DataTable = () => {
   const history = useNavigate();
@@ -88,7 +87,7 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:3000/grid_data")
+    fetch("https://620497f4c6d8b20017dc35a0.mockapi.io/TestData")
       .then((data) => data.json())
       .then((data) => {
         setRowsToShow(data);
@@ -122,50 +121,57 @@ const DataTable = () => {
   };
 
   return (
-    <div style={{ height: 600, width: "100%" }}>
-      <FormControl style={{ marginRight: 500 }}>
-        <InputLabel
-        className="xrp"
-          id="demo-simple-select-label"
-          sx={{
-            MuiFormLabel: {
-              top: "7px",
-            },
-          }}
-        >
-          Search Option
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          label="Search Option"
-          value={values.label}
-          onChange={handleChange}
-          style={{ width: 150 }}
+    <div className="shadow-base">
+      <div className="title">
+        <div className="card-title">Add new Data</div>
+
+        <FormControl>
+          <InputLabel
+            className="xrp"
+            id="demo-simple-select-label"
+            sx={{
+              MuiFormLabel: {
+                top: "7px",
+              },
+            }}
+          >
+            Search Option
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            label="Search Option"
+            value={values.label}
+            onChange={handleChange}
+            style={{ width: 150, marginRight: 5 }}
+            size="small"
+          >
+            {values.map((value, index) => {
+              return (
+                <MenuItem
+                  value={value}
+                  id={index}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: 5,
+                  }}
+                >
+                  {value.label}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        <TextField
+          id="outlined-basic"
           size="small"
-        >
-          {values.map((value, index) => {
-            return (
-              <MenuItem
-                value={value}
-                id={index}
-                style={{ display: "flex", flexDirection: "column", padding: 5 }}
-              >
-                {value.label}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <TextField
-        id="outlined-basic"
-        size="small"
-        label="Search"
-        disabled={searchTextfieldDisabled}
-        variant="outlined"
-        style={{ marginBottom: 15, marginTop: 5 }}
-        onChange={toggleChange}
-        value={search}
-      />
+          label="Search"
+          disabled={searchTextfieldDisabled}
+          variant="outlined"
+          onChange={toggleChange}
+          value={search}
+        />
+      </div>
       <DataGrid
         getRowId={(row) => row.id}
         rows={rowsToShow}
@@ -185,12 +191,12 @@ const DataTable = () => {
         }}
       />
       <Button
+        className="customButton"
         variant="contained"
         color="primary"
-        style={{ margin: 10 }}
         onClick={deleteAPIData}
       >
-        Add
+        Add New Data
       </Button>
     </div>
   );

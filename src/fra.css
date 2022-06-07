@@ -1,8 +1,162 @@
 .xrp {
-    top: -7px !important;
+    top: -6px !important;
 }
 
 .drawer {
     width: 190px;
-    background-color: rgb(0, 73, 144);
+    background-color: #004990;
+}
+
+.MuiDrawer-paperAnchorDockedLeft {
+    background: #004990 !important;
+}
+.MuiListItemIcon-root {
+    min-width: 35px !important;
+}
+.makeStyles-drawer-1 {
+    width: 210px !important;
+    margin: 0 20px 0 0 !important;
+}
+.App {
+    margin: 0 20px 20px 0!important;
+    
+    
+}
+body {background-color: #F3F3F9 !important;
+    font-family: "Roboto", sans-serif !important;
+}
+
+
+element.style {
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.MuiDrawer-paperAnchorDockedLeft {
+    border-right: 0px solid rgba(0, 0, 0, 0.12) !important;
+}
+.MuiListItem-button {
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.MuiListItem-gutters {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.MuiListItem-root {
+
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+transition: all 0.2s ease-in-out;
+}
+.MuiListItemIcon-root {
+    color: #adb5bd !important;
+transition: all 0.2s ease-in-out;
+}
+.MuiListItem-button:hover  {
+	transition: all 0.2s ease-in-out;
+	border-right: 5px solid #ffc100;
+    background-color: rgba(255, 255, 255, 0.07) !important;
+	transition: all 0.2s ease-in-out;
+	
+}
+.MuiListItem-button:hover .MuiListItemIcon-root, .MuiListItem-button:hover .MuiTypography-root{color:#fff !important;
+transition: all 0.2s ease-in-out;}
+
+
+
+.MuiTypography-root {
+transition: all 0.2s ease-in-out;
+    color: #adb5bd !important;
+    font-size: 14px !important;
+}
+
+.MuiDrawer-paper {
+
+    min-width: 210px !important;
+}
+.topbar {
+    margin: 0 -20px 0 -20px;
+    width: 100%;
+    position: absolute;
+    display: block;
+    padding: 25px 20px 28px 20px;
+    text-align: right;
+    font-size: 16px;
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 21%);
+    background: #fff;
+    top: 0;
+    box-sizing: border-box;
+    right: 20px;
+}
+.logo{
+    text-align: left;
+    padding: 23px 16px 20px 16px;
+    border-bottom: #ffffff1f 1px solid;
+}
+.nav-label {
+    padding: 20px 16px 5px 18px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05rem;
+    color: #878787;
+    text-align: left;
+    margin-top: 20px;
+}
+.shadow-base {
+    box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 21%);
+    background: #fff;
+    padding: 30px;
+    margin-top: 95px;
+    width: 100%;
+    height: 100%;
+}
+.css-1qnvcht-MuiGrid-root {
+   
+    margin-top: 0 !important;
+}
+.card-title {
+    font-size: 20px;
+    FONT-WEIGHT: 600;
+    line-height: 18px;
+    text-align: left;
+    margin-right: auto;
+}
+.MuiDataGrid-root {
+    min-height: 500px !important;
+}
+.title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.MuiDataGrid-row:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.04)!important;
+}
+.MuiDataGrid-row:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.644)!important;
+
+}
+.MuiDataGrid-row:nth-child(odd):hover,
+.MuiDataGrid-row:nth-child(even):hover{
+    background-color: rgba(63, 81, 181, 0.08)!important;
+
+}
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaderTitle {
+
+    font-weight: 600 !important;
+
+}
+.css-1ypaua5-MuiFormLabel-root-MuiInputLabel-root {
+    color: rgba(0, 0, 0, 0.644)!important;
+    
+    font-size: 14px !important;
+}
+.customButton{ 
+    padding: 10px 20px !important;
+    margin-top: 15px !important;
 }

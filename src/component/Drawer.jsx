@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { useNavigate } from "react-router-dom";
+import jslogo from '../images/js_logo.png'
 
 const useStyles = makeStyles({
   drawer: {
@@ -40,12 +41,16 @@ const Drawer = (props) => {
     },
   ];
   return (
-    <MUIDrawer variant="persistent" className={classes.drawer} open={true} style={{margin:20}}>
+    <MUIDrawer variant="persistent" className={classes.drawer} open={true} >
+      <div className="logo">
+        <img src={jslogo} />
+      </div>
+      <div class="nav-label">NAVIGATION</div>
       <List>
         {itemsList.map((item, index) => {
           const { text, icon, onClick } = item;
           return (
-            <ListItem button key={text} onClick={onClick} style={{paddingTop:15 , paddingRight:15}}>
+            <ListItem disabled={false} button key={text} onClick={onClick} >
               {icon && <ListItemIcon>{icon}</ListItemIcon>}
               <ListItemText primary={text} />
             </ListItem>

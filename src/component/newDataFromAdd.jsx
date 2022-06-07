@@ -21,6 +21,9 @@ class NewDataFormAdd extends Component {
     allRows: "",
     allMajorCategories: [],
     allMinorCategories: [],
+
+    // Datatable Fields Error True/False
+
     assetNoError: false,
     branchNameError: false,
     purchaseValueError: false,
@@ -87,6 +90,7 @@ class NewDataFormAdd extends Component {
   }
 
   handleMajorCategoryChange = (e) => {
+
     console.log("Data From Major Category Select");
     console.log(e.target.value);
     console.log(e.target.value.id);
@@ -110,6 +114,8 @@ class NewDataFormAdd extends Component {
     } else {
       this.setState({ disabledMinorCategory: true });
     }
+
+
   };
 
   handleMinorCategoryChange = (e) => {
@@ -125,33 +131,8 @@ class NewDataFormAdd extends Component {
   };
 
   onSubmitButton = (e) => {
-    if (
-      this.state.branchNameError === true ||
-      this.state.branchNameError === null
-      // this.state.qtyAsFarError == true ||
-      // this.state.purchaseValueError == true ||
-      // this.state.descriptionError == true ||
-      // this.state.majorCategoryError == true ||
-      // this.state.minorCategoryError == true ||
-      // this.state.locationCodeError == true ||
-      // this.state.custodianEmployeeIDError == true ||
-      // this.state.custodianEmployeeNoError == true ||
-      // this.state.otherRemarksError == true ||
-      // this.state.remarksIfNo == true ||
-      // this.state.branchCodeError == true ||
-      // this.state.purchaseDateError == true ||
-      // this.state.availabiltyStatusError == true ||
-      // this.state.wdvError == true
-    ) {
-      alert("Please Fill Mandatory Field First");
-    } else {
-      console.log(this.state.formDataState);
-    }
+    console.log("Button Pressed");
 
-    // Final Data after Change Handleing in Textfield
-  };
-
-  handleInputChange = (e) => {
     if (this.state.formDataState.ASSET_NUMBER == "") {
       this.setState({ assetNoError: true });
     } else {
@@ -247,6 +228,412 @@ class NewDataFormAdd extends Component {
       this.setState({ minorCategoryError: false });
     }
 
+    // Final Data after Change Handleing in Textfield
+  };
+
+  handleBranchName = (e) => {
+
+    if (this.state.formDataState.BRANCH_NAME == "") {
+      this.setState({ branchNameError: true });
+    } else {
+      this.setState({ branchNameError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleBranchCode = (e) => {
+
+    if (this.state.formDataState.BRANCH_CODE == "") {
+      this.setState({ branchCodeError: true });
+    } else {
+      this.setState({ branchCodeError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handlePurchaseValue = (e) => {
+
+
+    if (this.state.formDataState.PURCHASE_VALUE_RS == "") {
+      this.setState({ purchaseValueError: true });
+    } else {
+      this.setState({ purchaseValueError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handlePurchaseDate = (e) => {
+
+   if (this.state.formDataState.PURCHASE_DATE == "") {
+      this.setState({ purchaseDateError: true });
+    } else {
+      this.setState({ purchaseDateError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleDescription = (e) => {
+
+    if (this.state.formDataState.DESCRIPTION == "") {
+      this.setState({ descriptionError: true });
+    } else {
+      this.setState({ descriptionError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleMajorCategoryError = (e) => {
+
+    if (this.state.formDataState.MAJOR_CATEGORY == "") {
+      this.setState({ majorCategoryError: true });
+    } else {
+      this.setState({ majorCategoryError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleLocationCode = (e) => {
+
+    if (this.state.formDataState.LOCATION_CODE == "") {
+      this.setState({ locationCodeError: true });
+    } else {
+      this.setState({ locationCodeError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleQuantityAsFar = (e) => {
+
+    if (this.state.formDataState.QTY_AS_FAR == "") {
+      this.setState({ qtyAsFarError: true });
+    } else {
+      this.setState({ qtyAsFarError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleWDV = (e) => {
+
+    if (this.state.formDataState.WDV == "") {
+      this.setState({ wdvError: true });
+    } else {
+      this.setState({ wdvError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleAvailabilityStatus = (e) => {
+
+    if (this.state.formDataState.AVAILABILITY_STATUS == "") {
+      this.setState({ availabiltyStatusError: true });
+    } else {
+      this.setState({ availabiltyStatusError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleRemarksIfNo = (e) => {
+
+    if (this.state.formDataState.REMARKS_IF_NO == "") {
+      this.setState({ remarksIfNo: true });
+    } else {
+      this.setState({ remarksIfNo: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleCustodianEmployeeID = (e) => {
+
+    if (this.state.formDataState.CUSTODIAN_EMP_ID == "") {
+        this.setState({ custodianEmployeeIDError: true });
+      } else {
+        this.setState({ custodianEmployeeIDError: false });
+      }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleCustodianEmployeeNo = (e) => {
+
+    if (this.state.formDataState.CUSTODIAN_EMP_NO == "") {
+      this.setState({ custodianEmployeeNoError: true });
+    } else {
+      this.setState({ custodianEmployeeNoError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleOtherRemarks = (e) => {
+
+    if (this.state.formDataState.OTHER_REMARKS == "") {
+      this.setState({ otherRemarksError: true });
+    } else {
+      this.setState({ otherRemarksError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleAssetNumber = (e) => {
+
+    if (this.state.formDataState.ASSET_NUMBER == "") {
+      this.setState({ assetNoError: true });
+    } else {
+      this.setState({ assetNoError: false });
+    }
+
+    const { name, value } = e.target;
+    console.log(name);
+    console.log(value);
+
+    this.setState({
+      formDataState: {
+        ...this.state.formDataState,
+        [name]: value,
+      },
+    });
+  };
+
+  handleInputChange = (e) => {
+   
+    alert(e.target.id);
+
+    {
+    // if (this.state.formDataState.ASSET_NUMBER == "") {
+    //   this.setState({ assetNoError: true });
+    // } else {
+    //   this.setState({ assetNoError: false });
+    // }
+
+    // if (this.state.formDataState.BRANCH_NAME == "") {
+    //   this.setState({ branchNameError: true });
+    // } else {
+    //   this.setState({ branchNameError: false });
+    // }
+
+    // if (this.state.formDataState.PURCHASE_VALUE_RS == "") {
+    //   this.setState({ purchaseValueError: true });
+    // } else {
+    //   this.setState({ purchaseValueError: false });
+    // }
+
+    // if (this.state.formDataState.DESCRIPTION == "") {
+    //   this.setState({ descriptionError: true });
+    // } else {
+    //   this.setState({ descriptionError: false });
+    // }
+
+    // if (this.state.formDataState.MAJOR_CATEGORY == "") {
+    //   this.setState({ majorCategoryError: true });
+    // } else {
+    //   this.setState({ majorCategoryError: false });
+    // }
+
+    // if (this.state.formDataState.MINOR_CATEGORY == "") {
+    //   this.setState({ minorCategoryError: true });
+    // } else {
+    //   this.setState({ minorCategoryError: false });
+    // }
+
+    // if (this.state.formDataState.LOCATION_CODE == "") {
+    //   this.setState({ locationCodeError: true });
+    // } else {
+    //   this.setState({ locationCodeError: false });
+    // }
+
+    // if (this.state.formDataState.CUSTODIAN_EMP_ID == "") {
+    //   this.setState({ custodianEmployeeIDError: true });
+    // } else {
+    //   this.setState({ custodianEmployeeIDError: false });
+    // }
+
+    // if (this.state.formDataState.CUSTODIAN_EMP_NO == "") {
+    //   this.setState({ custodianEmployeeNoError: true });
+    // } else {
+    //   this.setState({ custodianEmployeeNoError: false });
+    // }
+
+    // if (this.state.formDataState.OTHER_REMARKS == "") {
+    //   this.setState({ otherRemarksError: true });
+    // } else {
+    //   this.setState({ otherRemarksError: false });
+    // }
+    // if (this.state.formDataState.REMARKS_IF_NO == "") {
+    //   this.setState({ remarksIfNo: true });
+    // } else {
+    //   this.setState({ remarksIfNo: false });
+    // }
+    // if (this.state.formDataState.BRANCH_CODE == "") {
+    //   this.setState({ branchCodeError: true });
+    // } else {
+    //   this.setState({ branchCodeError: false });
+    // }
+    // if (this.state.formDataState.PURCHASE_DATE == "") {
+    //   this.setState({ purchaseDateError: true });
+    // } else {
+    //   this.setState({ purchaseDateError: false });
+    // }
+    // if (this.state.formDataState.AVAILABILITY_STATUS == "") {
+    //   this.setState({ availabiltyStatusError: true });
+    // } else {
+    //   this.setState({ availabiltyStatusError: false });
+    // }
+    // if (this.state.formDataState.WDV == "") {
+    //   this.setState({ wdvError: true });
+    // } else {
+    //   this.setState({ wdvError: false });
+    // }
+    // if (this.state.formDataState.QTY_AS_FAR == "") {
+    //   this.setState({ qtyAsFarError: true });
+    // } else {
+    //   this.setState({ qtyAsFarError: false });
+    // }
+    // if (this.state.formDataState.MINOR_CATEGORY == "") {
+    //   this.setState({ minorCategoryError: true });
+    // } else {
+    //   this.setState({ minorCategoryError: false });
+    // }
+
+    }
+
     const { name, value } = e.target;
     console.log(name);
     console.log(value);
@@ -264,230 +651,238 @@ class NewDataFormAdd extends Component {
     this.displayedOptionsMinor = this.state.allMinorCategories;
 
     return (
-      <React.Fragment>
-        <Grid container spacing={3} marginTop={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="ASSET_NUMBER"
-              name="ASSET_NUMBER"
-              label="Asset Number"
-              fullWidth
-              variant="outlined"
-              error={this.state.assetNoError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
+      <div className="shadow-base">
+        <div className="card-title">Add new Data</div>
+        <React.Fragment>
+          <Grid container spacing={3} marginTop={3}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="ASSET_NUMBER"
+                name="ASSET_NUMBER"
+                label="Asset Number"
+                fullWidth
+                variant="outlined"
+                error={this.state.assetNoError}
+                onChange={(e) => this.handleAssetNumber(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="BRANCH_CODE"
+                name="BRANCH_CODE"
+                label="Branch Code"
+                fullWidth
+                autoComplete={"given-name"}
+                variant="outlined"
+                error={this.state.branchCodeError}
+                onChange={(e) => this.handleBranchCode(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="BRANCH_NAME"
+                name="BRANCH_NAME"
+                label="Branch Name"
+                fullWidth
+                variant="outlined"
+                error={this.state.branchNameError}
+                onChange={(e) => this.handleBranchName(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="PURCHASE_DATE"
+                error={this.state.purchaseDateError}
+                name="PURCHASE_DATE"
+                label="Purchase Date"
+                fullWidth
+                autoComplete={"given-name"}
+                variant="outlined"
+                onChange={(e) => this.handlePurchaseDate(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="PURCHASE_VALUE_RS"
+                name="PURCHASE_VALUE_RS"
+                label="Purchase Value (RS)"
+                fullWidth
+                variant="outlined"
+                error={this.state.purchaseValueError}
+                onChange={(e) => this.handlePurchaseValue(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="DESCRIPTION"
+                name="DESCRIPTION"
+                label="Description"
+                fullWidth
+                variant="outlined"
+                onChange={(e) => this.handleDescription(e)}
+                error={this.state.descriptionError}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel id="search-select-label">
+                    Major Category
+                  </InputLabel>
+                  <Select
+                    labelId="search-select-label"
+                    label="Major Category"
+                    onChange={this.handleMajorCategoryChange}
+                    value={this.state.selectMajorCategoryList.id}
+                    error={this.state.majorCategoryError}
+                  >
+                    {this.displayedOptionsMajor.map((option, i) => (
+                      <MenuItem key={i} value={option}>
+                        {option.majorcategory}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel id="search-select-label">
+                    Minor Category
+                  </InputLabel>
+                  <Select
+                    disabled={this.state.disabledMinorCategory}
+                    labelId="search-select-label"
+                    label="Maior Category"
+                    onChange={this.handleMinorCategoryChange}
+                    value={this.state.selectMinorCategoryList.id}
+                    error={this.state.minorCategoryError}
+                  >
+                    {this.displayedOptionsMinor.map((option, i) => (
+                      <MenuItem key={i} value={option}>
+                        <span> {option.description} </span>
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="LOCATION_CODE"
+                name="LOCATION_CODE"
+                label="Location Code"
+                fullWidth
+                variant="outlined"
+                error={this.state.locationCodeError}
+                onChange={(e) => this.handleLocationCode(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="QTY_AS_FAR"
+                name="QTY_AS_FAR"
+                label="Quantity As Far"
+                fullWidth
+                variant="outlined"
+                error={this.state.qtyAsFarError}
+                onChange={(e) => this.handleQuantityAsFar(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="WDV"
+                name="WDV"
+                label="WDV"
+                error={this.state.wdvError}
+                fullWidth
+                vvariant="outlined"
+                onChange={(e) => this.handleWDV(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="AVAILABILITY_STATUS"
+                name="AVAILABILITY_STATUS"
+                label="Availability Status"
+                fullWidth
+                variant="outlined"
+                error={this.state.availabiltyStatusError}
+                onChange={(e) => this.handleAvailabilityStatus(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="REMARKS_IF_NO"
+                name="REMARKS_IF_NO"
+                label="Remarks If No"
+                fullWidth
+                variant="outlined"
+                error={this.state.remarksIfNo}
+                onChange={(e) => this.handleRemarksIfNo(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="CUSTODIAN_EMP_ID"
+                error={this.state.custodianEmployeeIDError}
+                name="CUSTODIAN_EMP_ID"
+                label="Custodian Employee ID"
+                fullWidth
+                autoComplete={"given-name"}
+                variant="outlined"
+                onChange={(e) => this.handleCustodianEmployeeID(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                error={this.state.custodianEmployeeNoError}
+                id="CUSTODIAN_EMP_NO"
+                name="CUSTODIAN_EMP_NO"
+                label="Custodian Employee No."
+                fullWidth
+                variant="outlined"
+                onChange={(e) => this.handleCustodianEmployeeNo(e)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="OTHER_REMARKS"
+                name="OTHER_REMARKS"
+                label="Other Remarks"
+                fullWidth
+                error={this.state.otherRemarksError}
+                autoComplete={"given-name"}
+                variant="outlined"
+                onChange={(e) => this.handleOtherRemarks(e)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                className="customButton"
+                variant="contained"
+                color="primary"
+                onClick={(e) => this.onSubmitButton(e)}
+              >
+                Submit
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="BRANCH_CODE"
-              name="BRANCH_CODE"
-              label="Branch Code"
-              fullWidth
-              autoComplete={"given-name"}
-              variant="outlined"
-              error={this.state.branchCodeError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="BRANCH_NAME"
-              name="BRANCH_NAME"
-              label="Branch Name"
-              fullWidth
-              variant="outlined"
-              error={this.state.branchNameError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="PURCHASE_DATE"
-              error={this.state.purchaseDateError}
-              name="PURCHASE_DATE"
-              label="Purchase Date"
-              fullWidth
-              autoComplete={"given-name"}
-              variant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="PURCHASE_VALUE_RS"
-              name="PURCHASE_VALUE_RS"
-              label="Purchase Value (RS)"
-              fullWidth
-              variant="outlined"
-              error={this.state.purchaseValueError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="DESCRIPTION"
-              name="DESCRIPTION"
-              label="Description"
-              fullWidth
-              variant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-              error={this.state.descriptionError}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box>
-              <FormControl fullWidth>
-                <InputLabel id="search-select-label">Major Category</InputLabel>
-                <Select
-                  labelId="search-select-label"
-                  label="Major Category"
-                  onChange={this.handleMajorCategoryChange}
-                  value={this.state.selectMajorCategoryList.id}
-                  error={this.state.majorCategoryError}
-                >
-                  {this.displayedOptionsMajor.map((option, i) => (
-                    <MenuItem key={i} value={option}>
-                      {option.majorcategory}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Box>
-              <FormControl fullWidth>
-                <InputLabel id="search-select-label">Minor Category</InputLabel>
-                <Select
-                  disabled={this.state.disabledMinorCategory}
-                  labelId="search-select-label"
-                  label="Maior Category"
-                  onChange={this.handleMinorCategoryChange}
-                  value={this.state.selectMinorCategoryList.id}
-                  error={this.state.minorCategoryError}
-                >
-                  {this.displayedOptionsMinor.map((option, i) => (
-                    <MenuItem key={i} value={option}>
-                      <span> {option.description} </span>
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="LOCATION_CODE"
-              name="LOCATION_CODE"
-              label="Location Code"
-              fullWidth
-              variant="outlined"
-              error={this.state.locationCodeError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="QTY_AS_FAR"
-              name="QTY_AS_FAR"
-              label="Quantity As Far"
-              fullWidth
-              variant="outlined"
-              error={this.state.qtyAsFarError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="WDV"
-              name="WDV"
-              label="WDV"
-              error={this.state.wdvError}
-              fullWidth
-              vvariant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              id="AVAILABILITY_STATUS"
-              name="AVAILABILITY_STATUS"
-              label="Availability Status"
-              fullWidth
-              variant="outlined"
-              error={this.state.availabiltyStatusError}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="REMARKS_IF_NO"
-              name="REMARKS_IF_NO"
-              label="Remarks If No"
-              fullWidth
-              variant="outlined"
-              error={this.state.remarksIfNo}
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="CUSTODIAN_EMP_ID"
-              error={this.state.custodianEmployeeIDError}
-              name="CUSTODIAN_EMP_ID"
-              label="Custodian Employee ID"
-              fullWidth
-              autoComplete={"given-name"}
-              variant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={this.state.custodianEmployeeNoError}
-              id="CUSTODIAN_EMP_NO"
-              name="CUSTODIAN_EMP_NO"
-              label="Custodian Employee No."
-              fullWidth
-              variant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              id="OTHER_REMARKS"
-              name="OTHER_REMARKS"
-              label="Other Remarks"
-              fullWidth
-              error={this.state.otherRemarksError}
-              autoComplete={"given-name"}
-              variant="outlined"
-              onChange={(e) => this.handleInputChange(e)}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={(e) => this.onSubmitButton(e)}
-            >
-              Submit
-            </Button>
-          </Grid>
-        </Grid>
-      </React.Fragment>
+        </React.Fragment>
+      </div>
     );
   }
 }

@@ -6,12 +6,14 @@ import DataForm from "./component/DataForm";
 import DataFormAdd from "./extra/DataFormAdd";
 import NewDataFormAdd from "./component/newDataFromAdd";
 import Drawer from "./component/Drawer";
+import TopDiv from "./component/TopDiv";
 import DataFormRejected from "./component/DataFormRejected";
 
 function App() {
   return (
     <div className="App">
       <Drawer />
+      <TopDiv/>
       <Routes>
         <Route path="/dataform" element={<DataForm />} />
         <Route path="/dataformrejected" element={<DataFormRejected />} />
