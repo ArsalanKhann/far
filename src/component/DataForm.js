@@ -69,7 +69,7 @@ export default function DataForm() {
   };
 
   return (
-    <React.Fragment>
+    <div className="shadow-base">
       {/* Grid is added to view data with each textfield and button at the end in seperate grid elements*/}
       <Grid container spacing={3} marginTop={3}>
         <Grid item xs={12} sm={6}>
@@ -80,7 +80,7 @@ export default function DataForm() {
             name="ASSET_NUMBER"
             label="Asset Number"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -92,7 +92,7 @@ export default function DataForm() {
             label="Branch Code"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -103,7 +103,7 @@ export default function DataForm() {
             name="BRANCH_NAME"
             label="Branch Name"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -115,7 +115,7 @@ export default function DataForm() {
             label="Purchase Data"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -126,7 +126,7 @@ export default function DataForm() {
             name="PURCHASE_VALUE_RS"
             label="Purchase Value (RS)"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -136,7 +136,7 @@ export default function DataForm() {
             name="DESCRIPTION"
             label="Description"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -147,7 +147,7 @@ export default function DataForm() {
             name="MAJOR_CATEGORY"
             label="Major Category"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -159,7 +159,7 @@ export default function DataForm() {
             label="Minor Category"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -170,7 +170,7 @@ export default function DataForm() {
             name="LOCATION_CODE"
             label="Location Code"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -181,7 +181,7 @@ export default function DataForm() {
             name="QTY_AS_FAR"
             label="Quantity As Far"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -192,7 +192,7 @@ export default function DataForm() {
             name="WDV"
             label="WDV"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -201,7 +201,7 @@ export default function DataForm() {
             name="AVAILABILITY_STATUS"
             label="Availability Status "
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -212,7 +212,7 @@ export default function DataForm() {
             name="REMARKS_IF_NO"
             label="Remarks If No"
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -224,7 +224,7 @@ export default function DataForm() {
             label="Custodian Employee ID"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -235,7 +235,7 @@ export default function DataForm() {
             name="CUSTODIAN_EMP_NO"
             label="Custodian Employee No."
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -247,7 +247,7 @@ export default function DataForm() {
             label="Other Remarks"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -274,6 +274,6 @@ export default function DataForm() {
           <Button onClick={handleChange}>Submit</Button>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }

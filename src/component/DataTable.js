@@ -87,7 +87,7 @@ const DataTable = () => {
   ];
 
   useEffect(() => {
-    fetch("https://620497f4c6d8b20017dc35a0.mockapi.io/TestData")
+    fetch("http://localhost:3000/grid_data")
       .then((data) => data.json())
       .then((data) => {
         setRowsToShow(data);

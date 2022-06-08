@@ -514,22 +514,23 @@ class NewDataFormAdd extends Component {
 
   handleAssetNumber = (e) => {
 
-    if (this.state.formDataState.ASSET_NUMBER == "") {
-      this.setState({ assetNoError: true });
-    } else {
-      this.setState({ assetNoError: false });
-    }
+    console.log("Length is : "+this.state.formDataState.ASSET_NUMBER.trim().length)
 
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
-
+    
     this.setState({
       formDataState: {
         ...this.state.formDataState,
         [name]: value,
       },
     });
+
+    if (this.state.formDataState.ASSET_NUMBER.trim().length === null) {
+      this.setState({ assetNoError: true });
+    } else {
+      this.setState({ assetNoError: false });
+    }
+
   };
 
   handleInputChange = (e) => {
