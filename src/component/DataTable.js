@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const DataTable = () => {
-
   const history = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -62,8 +61,8 @@ const DataTable = () => {
     { field: "QTY_AS_FAR", headerName: "Quantity As Far", width: 150 },
     {
       field: "action",
-      headerName: " ",
-      
+      // headerName: " ",
+
       disableExport: true,
       sortable: false,
       renderCell: (params) => {
@@ -130,7 +129,11 @@ const DataTable = () => {
   const CustomToolbar = () => {
     return (
       <GridToolbarContainer>
-        <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
+        <GridToolbarExport
+          csvOptions={{
+            fileName: "FAR"
+          }}
+        />
       </GridToolbarContainer>
     );
   };
@@ -187,7 +190,7 @@ const DataTable = () => {
         />
       </div>
       <DataGrid
-      title="Employee Data"
+        title="Employee Data"
         getRowId={(row) => row.id}
         rows={rowsToShow}
         columns={columns}

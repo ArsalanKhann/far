@@ -58,6 +58,7 @@ class NewDataFormAdd extends Component {
   }
 
   initialValues = {
+    TESTFIELD: "",
     ASSET_NUMBER: "",
     SERIAL_NUMBER: "",
     DESCRIPTION: "",
@@ -657,6 +658,18 @@ class NewDataFormAdd extends Component {
         <div className="card-title">Add new Data</div>
         <React.Fragment>
           <Grid container spacing={3} marginTop={3}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                id="TESTFIELD"
+                name="TESTFIELD"
+                label="TESTFIELD"
+                fullWidth
+                variant="outlined"
+                // error={}
+                // onChange={}
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
