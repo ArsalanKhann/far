@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../fra.css";
-import { DataGrid } from "@material-ui/data-grid";
+import {
+  DataGrid,
+  GridToolbarContainer,
+  GridToolbarExport,
+} from "@material-ui/data-grid";
 import {
   Button,
   Box,
@@ -14,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const DataTable = () => {
+
   const history = useNavigate();
 
   const [search, setSearch] = useState("");
@@ -26,6 +31,7 @@ const DataTable = () => {
   let [searchTextfieldDisabled, setSearchTextfieldDisabled] = useState(true);
 
   const [values, setValues] = useState([
+    { value: "id", label: "TESTFIELD  ", id: 7 },
     { value: "id", label: "Asset No.", id: 0 },
     { value: "SERIAL_NUMBER", label: "Serial Number", id: 1 },
     { value: "DESCRIPTION", label: "Description", id: 2 },
@@ -33,7 +39,6 @@ const DataTable = () => {
     { value: "MINOR_CATEGORY", label: "Minor Category", id: 4 },
     { value: "PURCHASE_DATE", label: "Purchase Date", id: 5 },
     { value: "PURCHASE_VALUE_RS", label: "Value", id: 6 },
-    { value: "WDV", label: "WDV", id: 7 },
     { value: "LOCATION_CODE", label: "Location Code", id: 8 },
     { value: "BRANCH_NAME", label: "Branch Name", id: 9 },
     { value: "BRANCH_CODE", label: "Branch Code", id: 10 },
@@ -43,6 +48,7 @@ const DataTable = () => {
   let [selectedId, setSelectedId] = useState();
 
   const columns = [
+    { field: "TESTFIELD", headerName: "TESTFIELD", width: 140 },
     { field: "id", headerName: "Asset No.", width: 140 },
     { field: "SERIAL_NUMBER", headerName: "Serial Number", width: 150 },
     { field: "DESCRIPTION", headerName: "Description", width: 150 },
@@ -50,14 +56,15 @@ const DataTable = () => {
     { field: "MINOR_CATEGORY", headerName: "Minor Category", width: 190 },
     { field: "PURCHASE_DATE", headerName: "Purchase Date", width: 190 },
     { field: "PURCHASE_VALUE_RS", headerName: "Value", width: 150 },
-    { field: "WDV", headerName: "WDV", width: 120 },
     { field: "LOCATION_CODE", headerName: "Location Code", width: 170 },
     { field: "BRANCH_NAME", headerName: "Branch Name", width: 150 },
     { field: "BRANCH_CODE", headerName: "Branch Code", width: 150 },
     { field: "QTY_AS_FAR", headerName: "Quantity As Far", width: 150 },
     {
       field: "action",
-      headerName: "Extract",
+      headerName: " ",
+      
+      disableExport: true,
       sortable: false,
       renderCell: (params) => {
         const onClick = (e) => {
@@ -120,11 +127,18 @@ const DataTable = () => {
     console.log(deletedRows);
   };
 
+  const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer>
+        <GridToolbarExport printOptions={{ disableToolbarButton: true }} />
+      </GridToolbarContainer>
+    );
+  };
+
   return (
     <div className="shadow-base">
       <div className="title">
-        <div className="card-title">Add new Data</div>
-
+        <div className="card-title">List of Assets</div>
         <FormControl>
           <InputLabel
             className="xrp"
@@ -173,10 +187,14 @@ const DataTable = () => {
         />
       </div>
       <DataGrid
+      title="Employee Data"
         getRowId={(row) => row.id}
         rows={rowsToShow}
         columns={columns}
         pageSize={15}
+        components={{
+          Toolbar: CustomToolbar,
+        }}
         checkboxSelection
         onSelectionModelChange={({ selectionModel }) => {
           const rowIds = selectionModel.map((rowId) =>

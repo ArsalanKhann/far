@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 
 class NewDataFormAdd extends Component {
+  
   state = {
     disabledMinorCategory: true,
     selectMajorCategoryList: "",
@@ -39,7 +40,7 @@ class NewDataFormAdd extends Component {
     qtyAsFarError: false,
     wdvError: false,
     availabiltyStatusError: false,
-    remarksIfNo: false,
+    remarksIfNoError: false,
   };
 
   phoneRegex = "";
@@ -193,9 +194,9 @@ class NewDataFormAdd extends Component {
       this.setState({ otherRemarksError: false });
     }
     if (this.state.formDataState.REMARKS_IF_NO == "") {
-      this.setState({ remarksIfNo: true });
+      this.setState({ remarksIfNoError: true });
     } else {
-      this.setState({ remarksIfNo: false });
+      this.setState({ remarksIfNoError: false });
     }
     if (this.state.formDataState.BRANCH_CODE == "") {
       this.setState({ branchCodeError: true });
@@ -432,12 +433,12 @@ class NewDataFormAdd extends Component {
     });
   };
 
-  handleRemarksIfNo = (e) => {
+  handleremarksIfNoError = (e) => {
 
     if (this.state.formDataState.REMARKS_IF_NO == "") {
-      this.setState({ remarksIfNo: true });
+      this.setState({ remarksIfNoError: true });
     } else {
-      this.setState({ remarksIfNo: false });
+      this.setState({ remarksIfNoError: false });
     }
 
     const { name, value } = e.target;
@@ -598,9 +599,9 @@ class NewDataFormAdd extends Component {
     //   this.setState({ otherRemarksError: false });
     // }
     // if (this.state.formDataState.REMARKS_IF_NO == "") {
-    //   this.setState({ remarksIfNo: true });
+    //   this.setState({ remarksIfNoError: true });
     // } else {
-    //   this.setState({ remarksIfNo: false });
+    //   this.setState({ remarksIfNoError: false });
     // }
     // if (this.state.formDataState.BRANCH_CODE == "") {
     //   this.setState({ branchCodeError: true });
@@ -829,8 +830,8 @@ class NewDataFormAdd extends Component {
                 label="Remarks If No"
                 fullWidth
                 variant="outlined"
-                error={this.state.remarksIfNo}
-                onChange={(e) => this.handleRemarksIfNo(e)}
+                error={this.state.remarksIfNoError}
+                onChange={(e) => this.handleremarksIfNoError(e)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>

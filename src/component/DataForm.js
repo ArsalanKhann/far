@@ -11,9 +11,11 @@ export default function DataForm() {
     "#put-request-error-handling .date-updated"
   );
 
-  const location = useLocation();             //To recive data from DataTable's Grid Element.
+  const location = useLocation(); //To recive data from DataTable's Grid Element.
 
   let initialValues = {
+    
+    TESTFIELD: location.state.thisRow.TESTFIELD,
     ASSET_NUMBER: location.state.thisRow.id,
     SERIAL_NUMBER: location.state.thisRow.SERIAL_NUMBER,
     DESCRIPTION: location.state.thisRow.DESCRIPTION,
@@ -31,14 +33,54 @@ export default function DataForm() {
     CUSTODIAN_EMP_ID: "",
     CUSTODIAN_EMP_NO: "",
     OTHER_REMARKS: "",
-    YES_NO: null
+    YES_NO: null,
   };
 
   let [textfieldState, setTextfieldState] = useState(initialValues);
 
-  const handleChange = (e) => {
+  const [otherRemarksError, setOtherRemarksError] = useState(false);
+  const [remarksIfNoError, setRemarksIfNoError] = useState(false);
+  const [availabiltyStatusError, setAvailabiltyStatusError] = useState(false);
+  const [custodianEmployeeNoError, setCustodianEmployeeNoError] = useState(false);
+  const [custodianEmployeeIDError, setCustodianEmployeeIDError] = useState(false);
 
-    console.log(textfieldState);  // Final Data after Change Handleing in Textfield
+  const onSubmit = (e) => {
+
+    console.log(textfieldState.OTHER_REMARKS)
+
+    if (textfieldState.OTHER_REMARKS == "") {
+      setOtherRemarksError(true)
+    } else {
+      setOtherRemarksError(false)
+    }
+
+    if (textfieldState.CUSTODIAN_EMP_ID == "") {
+      setCustodianEmployeeIDError(true)
+    } else {
+      setCustodianEmployeeIDError(false)
+    }
+
+    if (textfieldState.CUSTODIAN_EMP_NO == "") {
+      setCustodianEmployeeNoError(true)
+    } else {
+      setCustodianEmployeeNoError(false)
+    }
+
+    if (textfieldState.REMARKS_IF_NO == "") {
+      setRemarksIfNoError(true)
+    } else {
+      setRemarksIfNoError(false)
+    }
+
+    if (textfieldState.AVAILABILITY_STATUS == "") {
+      setAvailabiltyStatusError(true)
+    } else {
+      setAvailabiltyStatusError(false)
+    }
+
+    
+
+    console.log(textfieldState); // Final Data after Change Handleing in Textfield
 
     // axios
     //   .post("http://localhost:3001", textfieldState)
@@ -49,8 +91,89 @@ export default function DataForm() {
     //   });
   };
 
+  const handleAvailabilityStatus =(e) => {
+    
+    if (textfieldState.AVAILABILITY_STATUS.trim().length === null) {
+      setAvailabiltyStatusError(true)
+    } else {
+      setAvailabiltyStatusError(false)
+    }
 
-  const handleInputChange = (e) => {    // Handleing change in textfields which are editable
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+
+  }
+
+
+  const handleremarksIfNoError =(e) => {
+
+    if (textfieldState.REMARKS_IF_NO.trim().length === null) {
+      setRemarksIfNoError(true)
+  } else {
+    setRemarksIfNoError(false)
+  }
+
+  const { name, value } = e.target;
+  setTextfieldState({
+    ...textfieldState,
+    [name]: value,
+  });
+
+  }
+
+
+  const handleCustodianEmployeeID =(e) => {
+    
+    if (textfieldState.CUSTODIAN_EMP_ID.trim().length === null) {
+      setCustodianEmployeeIDError(true)
+    } else {
+      setCustodianEmployeeIDError(false)
+    }
+
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+  }
+
+
+  const handleCustodianEmployeeNo =(e) => {
+    if (textfieldState.CUSTODIAN_EMP_NO.trim().length === null) {
+      setCustodianEmployeeNoError(true)
+    } else {
+      setCustodianEmployeeNoError(false)
+    }
+
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+  }
+
+
+  const handleOtherRemarks = (e) => {
+    // Handleing change in textfields which are editable
+
+    if (textfieldState.OTHER_REMARKS.trim().length === null) {
+      setOtherRemarksError(true)
+    } else {
+      setOtherRemarksError(false)
+    }
+
+    const { name, value } = e.target;
+    setTextfieldState({
+      ...textfieldState,
+      [name]: value,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    // Handleing change in textfields which are editable
     const { name, value } = e.target;
     setTextfieldState({
       ...textfieldState,
@@ -59,19 +182,28 @@ export default function DataForm() {
   };
 
   const handleChangeCheck = (e) => {
-
     const { name, value } = e.target;
     setTextfieldState({
       ...textfieldState,
       [name]: value,
     });
-
   };
 
   return (
     <div className="shadow-base">
       {/* Grid is added to view data with each textfield and button at the end in seperate grid elements*/}
       <Grid container spacing={3} marginTop={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            value={initialValues.TESTFIELD}
+            id="TESTFIELD"
+            name="TESTFIELD"
+            label="TESTFIELD"
+            fullWidth
+            variant="outlined"
+          />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -200,9 +332,10 @@ export default function DataForm() {
             id="AVAILABILITY_STATUS"
             name="AVAILABILITY_STATUS"
             label="Availability Status "
+            error={availabiltyStatusError}
             fullWidth
             variant="outlined"
-            onChange={handleInputChange}
+            onChange={handleAvailabilityStatus}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -211,9 +344,10 @@ export default function DataForm() {
             id="REMARKS_IF_NO"
             name="REMARKS_IF_NO"
             label="Remarks If No"
+            error={remarksIfNoError}
             fullWidth
             variant="outlined"
-            onChange={handleInputChange}
+            onChange={handleremarksIfNoError}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -222,10 +356,11 @@ export default function DataForm() {
             id="CUSTODIAN_EMP_ID"
             name="CUSTODIAN_EMP_ID"
             label="Custodian Employee ID"
+            error={custodianEmployeeIDError}
             fullWidth
             autoComplete={"given-name"}
             variant="outlined"
-            onChange={handleInputChange}
+            onChange={handleCustodianEmployeeID}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -236,7 +371,8 @@ export default function DataForm() {
             label="Custodian Employee No."
             fullWidth
             variant="outlined"
-            onChange={handleInputChange}
+            error={custodianEmployeeNoError}
+            onChange={handleCustodianEmployeeNo}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -246,32 +382,33 @@ export default function DataForm() {
             name="OTHER_REMARKS"
             label="Other Remarks"
             fullWidth
+            error={otherRemarksError}
             autoComplete={"given-name"}
             variant="outlined"
-            onChange={handleInputChange}
+            onChange={handleOtherRemarks}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-        Yes
-        <input
-          id="yes"
-          value="YES"
-          name="YES_NO"
-          type="radio"
-          onChange={handleChangeCheck}
-        />
-        <br />
-        No
-        <input
-          id="no"
-          value="NO"
-          name="YES_NO"
-          type="radio"
-          onChange={handleChangeCheck}
-        />
+          Yes
+          <input
+            id="yes"
+            value="YES"
+            name="YES_NO"
+            type="radio"
+            onChange={handleChangeCheck}
+          />
+          <br />
+          No
+          <input
+            id="no"
+            value="NO"
+            name="YES_NO"
+            type="radio"
+            onChange={handleChangeCheck}
+          />
         </Grid>
         <Grid item xs={12}>
-          <Button onClick={handleChange}>Submit</Button>
+          <Button onClick={onSubmit}>Submit</Button>
         </Grid>
       </Grid>
     </div>

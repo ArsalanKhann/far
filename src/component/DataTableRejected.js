@@ -26,6 +26,7 @@ const DataTableRejected = () => {
   let [searchTextfieldDisabled, setSearchTextfieldDisabled] = useState(true);
 
   const [values, setValues] = useState([
+    { value: "TESTFIELD", label: "TESTFIELD  ", id: 7 },
     { value: "id", label: "Asset No.", id: 0 },
     { value: "SERIAL_NUMBER", label: "Serial Number", id: 1 },
     { value: "DESCRIPTION", label: "Description", id: 2 },
@@ -33,7 +34,6 @@ const DataTableRejected = () => {
     { value: "MINOR_CATEGORY", label: "Minor Category", id: 4 },
     { value: "PURCHASE_DATE", label: "Purchase Date", id: 5 },
     { value: "PURCHASE_VALUE_RS", label: "Value", id: 6 },
-    { value: "WDV", label: "WDV", id: 7 },
     { value: "LOCATION_CODE", label: "Location Code", id: 8 },
     { value: "BRANCH_NAME", label: "Branch Name", id: 9 },
     { value: "BRANCH_CODE", label: "Branch Code", id: 10 },
@@ -43,15 +43,14 @@ const DataTableRejected = () => {
   let [selectedId, setSelectedId] = useState();
 
   const columns = [
+    { field: "TESTFIELD", headerName: "TESTFIELD", width: 140 },
     { field: "id", headerName: "Asset No.", width: 140 },
     { field: "SERIAL_NUMBER", headerName: "Serial Number", width: 150 },
-    { field: "REMARKS_IF_NO", headerName: "Remarks if No", width: 150 },
     { field: "DESCRIPTION", headerName: "Description", width: 150 },
     { field: "MAJOR_CATEGORY", headerName: "Major Category", width: 190 },
     { field: "MINOR_CATEGORY", headerName: "Minor Category", width: 190 },
     { field: "PURCHASE_DATE", headerName: "Purchase Date", width: 190 },
     { field: "PURCHASE_VALUE_RS", headerName: "Value", width: 150 },
-    { field: "WDV", headerName: "WDV", width: 120 },
     { field: "LOCATION_CODE", headerName: "Location Code", width: 170 },
     { field: "BRANCH_NAME", headerName: "Branch Name", width: 150 },
     { field: "BRANCH_CODE", headerName: "Branch Code", width: 150 },
@@ -124,7 +123,7 @@ const DataTableRejected = () => {
   return (
     <div className="shadow-base">
       <div className="title">
-      <div className="card-title">Add new Data</div>
+      <div className="card-title">List of Rejected Asset</div>
 
         <FormControl>
           <InputLabel

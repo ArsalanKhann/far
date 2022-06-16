@@ -14,6 +14,7 @@ export default function DataFormRejected() {
   const location = useLocation();             //To recive data from DataTable's Grid Element.
 
   let initialValues = {
+    TESTFIELD: location.state.thisRow.TESTFIELD,
     ASSET_NUMBER: location.state.thisRow.id,
     SERIAL_NUMBER: location.state.thisRow.SERIAL_NUMBER,
     DESCRIPTION: location.state.thisRow.DESCRIPTION,
@@ -69,9 +70,21 @@ export default function DataFormRejected() {
   };
 
   return (
-    <React.Fragment>
+    <div className="shadow-base">
       {/* Grid is added to view data with each textfield and button at the end in seperate grid elements*/}
       <Grid container spacing={3} marginTop={3}>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            defaultValue={initialValues.TESTFIELD}
+            id="TESTFIELD"
+            name="TESTFIELD"
+            label="TESTFIELD"
+            fullWidth
+            variant="outlined"
+            onChange={handleInputChange}
+          />
+        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -80,7 +93,7 @@ export default function DataFormRejected() {
             name="ASSET_NUMBER"
             label="Asset Number"
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -93,7 +106,7 @@ export default function DataFormRejected() {
             label="Branch Code"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -104,7 +117,7 @@ export default function DataFormRejected() {
             name="BRANCH_NAME"
             label="Branch Name"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -116,7 +129,7 @@ export default function DataFormRejected() {
             label="Purchase Data"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -127,7 +140,7 @@ export default function DataFormRejected() {
             name="PURCHASE_VALUE_RS"
             label="Purchase Value (RS)"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -137,7 +150,7 @@ export default function DataFormRejected() {
             name="DESCRIPTION"
             label="Description"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -148,7 +161,7 @@ export default function DataFormRejected() {
             name="MAJOR_CATEGORY"
             label="Major Category"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -160,7 +173,7 @@ export default function DataFormRejected() {
             label="Minor Category"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -171,7 +184,7 @@ export default function DataFormRejected() {
             name="LOCATION_CODE"
             label="Location Code"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -182,7 +195,7 @@ export default function DataFormRejected() {
             name="QTY_AS_FAR"
             label="Quantity As Far"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -193,7 +206,7 @@ export default function DataFormRejected() {
             name="WDV"
             label="WDV"
             fullWidth
-            variant="standard"
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -202,7 +215,7 @@ export default function DataFormRejected() {
             name="AVAILABILITY_STATUS"
             label="Availability Status "
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -213,7 +226,7 @@ export default function DataFormRejected() {
             name="REMARKS_IF_NO"
             label="Remarks If No"
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -225,7 +238,7 @@ export default function DataFormRejected() {
             label="Custodian Employee ID"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -236,7 +249,7 @@ export default function DataFormRejected() {
             name="CUSTODIAN_EMP_NO"
             label="Custodian Employee No."
             fullWidth
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -248,7 +261,7 @@ export default function DataFormRejected() {
             label="Other Remarks"
             fullWidth
             autoComplete={"given-name"}
-            variant="standard"
+            variant="outlined"
             onChange={handleInputChange}
           />
         </Grid>
@@ -275,6 +288,6 @@ export default function DataFormRejected() {
           <Button onClick={handleChange}>Submit</Button>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </div>
   );
 }
